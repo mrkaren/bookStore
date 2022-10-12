@@ -1,7 +1,7 @@
-package am.itspace.taskmanagement.security;
+package am.itspace.bookstore.security;
 
-import am.itspace.taskmanagement.entity.User;
-import am.itspace.taskmanagement.repository.UserRepository;
+import am.itspace.bookstore.entity.User;
+import am.itspace.bookstore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -10,24 +10,16 @@
 <span th:if="${currentUser != null}" th:text="Welcome + ${currentUser.name}"></span>
 <a th:if="${currentUser == null}" href="/register">Register</a>
 
-Books:
+Register:
 
-<table>
-    <tr>
-        <th>title</th>
-        <th>price</th>
-        <th>action</th>
-    </tr>
-    <tr th:each="book: ${books}">
-        <td th:text="${book.title}"></td>
-        <td th:text="${book.price}"></td>
-        <td>
-            <a th:if="${currentUser != null}" th:href="@{/order(bookId=${book.id})}">Order</a>
-            <a th:if="${currentUser != null && currentUser.userRole.name == 'ADMIN'}" th:href="@{/book/remove(bookId=${book.id})}">Remove</a>
-            <a th:if="${currentUser != null && currentUser.userRole.name == 'ADMIN'}" th:href="@{/book/edit(bookId=${book.id})}">Edit</a>
-        </td>
-    </tr>
-</table>
+<form action="/register" method="post">
+
+    <input type="text" name="name" placeholder="Please input name"><br>
+    <input type="text" name="surname" placeholder="Please input surname"><br>
+    <input type="email" name="email" placeholder="Please input email"><br>
+    <input type="password" name="password" placeholder="Please input password"><br>
+    <input type="submit" value="Register">
+</form>
 
 </body>
 </html>

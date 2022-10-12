@@ -1,12 +1,11 @@
-package am.itspace.taskmanagement.controller;
+package am.itspace.bookstore.controller;
 
-import am.itspace.taskmanagement.entity.User;
-import am.itspace.taskmanagement.security.CurrentUser;
+import am.itspace.bookstore.entity.User;
+import am.itspace.bookstore.security.CurrentUser;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import javax.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
 public class MyControllerAdvice {
@@ -19,8 +18,4 @@ public class MyControllerAdvice {
         return null;
     }
 
-    @ModelAttribute(name = "currentUrl")
-    public String currentUrl(HttpServletRequest request) {
-        return request.getRequestURI();
-    }
 }

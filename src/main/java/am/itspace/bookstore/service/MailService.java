@@ -1,4 +1,4 @@
-package am.itspace.taskmanagement.service;
+package am.itspace.bookstore.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.MailSender;
@@ -13,13 +13,12 @@ public class MailService {
     private final MailSender mailSender;
 
     @Async
-    public void sendEmail(String to, String subject, String text){
+    public void sendEmail(String to, String subject, String text) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
         mailMessage.setTo(to);
         mailMessage.setSubject(subject);
         mailMessage.setText(text);
-
 
         mailSender.send(mailMessage);
     }

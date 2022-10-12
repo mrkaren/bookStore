@@ -1,10 +1,8 @@
 package am.itspace.bookstore.repository;
 
-import am.itspace.bookstore.entity.Book;
+import am.itspace.bookstore.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BookRepository extends JpaRepository<Book, Integer> {
-
-
+public interface OrderRepository extends JpaRepository<Order, Integer> {
 
 }

@@ -1,0 +1,80 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="kgasparyan" id="initdb">
+        <createTable tableName="user">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_role" type="ENUM('USER','ADMIN')" defaultValue="USER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_enable" type="INT(1)" defaultValue="0"/>
+
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="addPhoneNumberToUser" author="kgasparyan">
+        <addColumn tableName="user">
+            <column name="phone_number" type="VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="createBookAndOrderTable" author="kgasparyan">
+        <sql>
+            create table if not exists book
+            (
+                id          int auto_increment
+                primary key,
+                title       varchar(255) not null,
+                description text         null,
+                price       double       null
+                );
+        </sql>
+        <sql>
+            create table book_order
+            (
+                id              int auto_increment,
+                user_id         int      not null,
+                book_id         int      not null,
+                order_date_time datetime not null,
+                constraint book_order_pk
+                    primary key (id)
+            );
+        </sql>
+    </changeSet>
+
+<!--    <changeSet id="addconstraints" author="kgasparyan">-->
+<!--        <addForeignKeyConstraint baseTableName="book_order" baseColumnNames="user_id" constraintName="fk_book_order_user" referencedTableName="user"-->
+<!--                                 referencedColumnNames="id"/>-->
+<!--           <addForeignKeyConstraint baseTableName="book_order" baseColumnNames="book_id" constraintName="fk_book_order_book" referencedTableName="book"-->
+<!--                                 referencedColumnNames="id"/>-->
+
+<!--    </changeSet>-->
+
+
+    <changeSet id="addVerifyTokenToUser" author="kgasparyan">
+        <addColumn tableName="user">
+            <column type="varchar(255)" name="verify_token"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

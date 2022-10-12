@@ -1,2 +1,8 @@
-package am.itspace.bookstore.entity;public enum UserRole {
+package am.itspace.bookstore.entity;
+
+public enum UserRole {
+
+    USER,
+    ADMIN
+
 }
