@@ -11,21 +11,24 @@
 <a th:if="${currentUser == null}" href="/register">Register</a> <br>
 <a href="/">Home</a>
 <a th:if="${currentUser != null && currentUser.userRole.name == 'ADMIN'}" href="/admin">Admin Panel</a>
-<a th:if="${currentUser != null}" href="/myOrders">My Orders</a>
-
+<a href="/admin/allOrders">All Orders</a>
 Books:
+<a href="/admin/book/add">Add new Book</a> <br>
 
 <table>
     <tr>
+        <th>id</th>
         <th>title</th>
         <th>price</th>
         <th>action</th>
     </tr>
     <tr th:each="book: ${books}">
+        <td th:text="${book.id}"></td>
         <td> <a th:href="@{'/book/' + ${book.id}}" th:text="${book.title}"></a></td>
         <td th:text="${book.price}"></td>
         <td>
-            <a th:if="${currentUser != null}" th:href="@{/order/new(bookId=${book.id})}">Order</a>
+            <a th:href="@{'/admin/book/remove/' + ${book.id}}">Remove</a>
+            <a th:href="@{/admin/book/edit(bookId=${book.id})}">Edit</a>
         </td>
     </tr>
 </table>

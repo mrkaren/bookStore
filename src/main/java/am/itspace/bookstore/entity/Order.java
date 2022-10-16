@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "book_orders")
+@Table(name = "book_order")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,5 +32,5 @@ public class Order {
     private User user;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date orderDateTime;
-
+    private double amount;
 }

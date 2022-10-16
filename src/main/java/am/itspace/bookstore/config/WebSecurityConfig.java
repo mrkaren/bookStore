@@ -1,5 +1,6 @@
 package am.itspace.bookstore.config;
 
+import am.itspace.bookstore.entity.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,12 +23,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .formLogin()
+                .defaultSuccessUrl("/loginSuccess")
                 .and()
                 .logout()
                 .logoutSuccessUrl("/")
                 .and()
                 .authorizeRequests()
-//                .antMatchers("/tasks/add").hasAuthority(Role.MANAGER.name())
+                .antMatchers("/admin/**").hasAuthority(UserRole.ADMIN.name())
+                .antMatchers("/order/new").authenticated()
+                .antMatchers("/myOrders").authenticated()
 
                 .anyRequest()
                 .permitAll()
